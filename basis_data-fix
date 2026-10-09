@@ -1,0 +1,178 @@
+-- phpMyAdmin SQL Dump
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost:3306
+-- Generation Time: Oct 09, 2026 at 12:11 AM
+-- Server version: 5.7.44
+-- PHP Version: 8.5.11
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `basis_data`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `akun`
+--
+
+CREATE TABLE `akun` (
+  `nim` varchar(20) NOT NULL,
+  `password` varchar(225) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `akun`
+--
+
+INSERT INTO `akun` (`nim`, `password`) VALUES
+('E4123456', '12345678'),
+('E4654321', '12345678');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mata_kuliah`
+--
+
+CREATE TABLE `mata_kuliah` (
+  `kode_matkul` char(5) NOT NULL,
+  `nama_matkul` varchar(50) NOT NULL,
+  `jumlah_SKS` tinyint(3) UNSIGNED DEFAULT '2',
+  `nama_jurusan` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `mata_kuliah`
+--
+
+INSERT INTO `mata_kuliah` (`kode_matkul`, `nama_matkul`, `jumlah_SKS`, `nama_jurusan`) VALUES
+('CITRA', 'Pengolahan CITRA', 2, 'Ilmu Komputer'),
+('FIDAS', 'Fisika Dasar', 2, 'Fisika'),
+('JRKOM', 'Jaringan Komputer', 2, 'Ilmu Komputer'),
+('KIMDA', 'Kimia Dasar', 2, 'Kimia'),
+('MMDAS', 'Matematika Dasar', 4, 'Matematika'),
+('PBASE', 'Pengantar Database', 2, 'Ilmu Komputer');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `mhs`
+--
+
+CREATE TABLE `mhs` (
+  `nim` varchar(20) NOT NULL,
+  `nama` varchar(225) DEFAULT NULL,
+  `jurusan` varchar(225) DEFAULT NULL,
+  `alamat` varchar(225) DEFAULT NULL,
+  `phone` int(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `produk`
+--
+
+CREATE TABLE `produk` (
+  `id_produk` int(11) NOT NULL,
+  `nama_produk` varchar(100) DEFAULT NULL,
+  `kategori` varchar(50) DEFAULT NULL,
+  `harga` decimal(10,0) DEFAULT NULL,
+  `stok` int(11) DEFAULT NULL,
+  `tgl_masuk` date DEFAULT NULL,
+  `id_supplier` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `produk`
+--
+
+INSERT INTO `produk` (`id_produk`, `nama_produk`, `kategori`, `harga`, `stok`, `tgl_masuk`, `id_supplier`) VALUES
+(2, 'LAPTOP', 'Elektronik', '10000000', 5, '2026-05-11', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `supplier`
+--
+
+CREATE TABLE `supplier` (
+  `id_supplier` int(11) NOT NULL,
+  `nama_supplier` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `supplier`
+--
+
+INSERT INTO `supplier` (`id_supplier`, `nama_supplier`) VALUES
+(1, 'PT. Elektronik Jaya'),
+(2, 'CV. Sumber Makmur'),
+(3, 'Gudang Utama');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `akun`
+--
+ALTER TABLE `akun`
+  ADD PRIMARY KEY (`nim`);
+
+--
+-- Indexes for table `mata_kuliah`
+--
+ALTER TABLE `mata_kuliah`
+  ADD PRIMARY KEY (`kode_matkul`);
+
+--
+-- Indexes for table `mhs`
+--
+ALTER TABLE `mhs`
+  ADD PRIMARY KEY (`nim`);
+
+--
+-- Indexes for table `produk`
+--
+ALTER TABLE `produk`
+  ADD PRIMARY KEY (`id_produk`);
+
+--
+-- Indexes for table `supplier`
+--
+ALTER TABLE `supplier`
+  ADD PRIMARY KEY (`id_supplier`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `produk`
+--
+ALTER TABLE `produk`
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `supplier`
+--
+ALTER TABLE `supplier`
+  MODIFY `id_supplier` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
